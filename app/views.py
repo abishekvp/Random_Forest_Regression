@@ -22,10 +22,9 @@ from sklearn.linear_model import Lasso
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import ElasticNet
 
-regression_name = {"reg_name":"Random Forest Regression"}
+regression_name = {"reg_name":""}
 
 def choose_regression(reg_name):
-    
     if reg_name == "Random Forest Regression":return RandomForestRegressor(n_estimators = 10, random_state = 0)
     
     elif reg_name == "Linear Regression":return linear_model.LinearRegression()
@@ -205,8 +204,10 @@ def index(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             r_name = request.POST.get('regression_model')
-            regression_name.update({"reg_name":r_name})
-            return redirect("regression")
+            if r_name is not None:
+                regression_name.update({"reg_name":r_name})
+                return redirect("regression")
+            else:messages.info(request, 'Select Regression Model')
         return render(request,'index.html')
     else:
         return redirect('signin')

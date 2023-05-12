@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% load static %}
+{% if user.is_authenticated %}
+    {% block content %}
+        <section>
+            <h1>{{total_dict.DM.data_dict.title1}}</h1>
+            {% for sub,dict in total_dict.items %}
+                <!-- <p>{{dict}}</p> -->
+                <h1>{{dict.data_dict.subject}}</h1>
+                <h3>{{dict.data_dict.title1}}</h3>
+                <h3>{{dict.data_dict.title2}}</h3>
+                <h3>{{dict.data_dict.title3}}</h3>
+                <h3>{{dict.data_dict.title4}}</h3>
+                <h4>{{dict.data_dict.mae}}</h4>
+                <h4>{{dict.data_dict.mse}}</h4>
+                <h4>{{dict.data_dict.rmse}}</h4>
+                <h4>{{dict.data_dict.good_fit}}</h4>
+                <h4>{{dict.data_dict.adjusted_sqr}}</h3>
+                <h3>{{dict.data_dict.variance_score}}</h4>
+                <h3>{{dict.data_dict.title5}}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>IAT 1</th>
+                            <th>IAT 2</th>
+                            <th>Model exam</th>
+                            <th>SemMark</th>
+                            <th>Prediction</th>
+                            <th>Actual Grade</th>
+                            <th>Predicted Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i, data in dict.table_data.items %}
+                        <tr>
+                            <td>{{i}}</td>
+                            <td>{{data.iat_1}}</td>
+                            <td>{{data.iat_2}}</td>
+                            <td>{{data.model_exam}}</td>
+                            <td>{{data.semmark}}</td>
+                            <td>{{data.prediction}}</td>
+                            <td>{{data.actual_grade}}</td>
+                            <td>{{data.predgrade}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <h4>{{dict.data_dict.crt_pred}}</h4>
+                <h4>{{dict.data_dict.wrong_pred}}</h4>
+                <h4>{{dict.data_dict.accuracy}}</h4>
+                <h4>{{dict.data_dict.avg_accuracy}}</h4>
+                <hr>
+            {% endfor %}
+        </section>
+    {% endblock %}
+{% endif %}

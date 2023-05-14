@@ -3,6 +3,7 @@
 {% if user.is_authenticated %}
     {% block content %}
         <section>
+            <h4 id="avg_accuracy">{{total_dict.avg_accuracy}}</h4>
             <h1>{{total_dict.DM.data_dict.title1}}</h1>
             {% for sub,dict in total_dict.items %}
                 <!-- <p>{{dict}}</p> -->
@@ -49,7 +50,6 @@
                 <h4>{{dict.data_dict.crt_pred}}</h4>
                 <h4>{{dict.data_dict.wrong_pred}}</h4>
                 <h4>{{dict.data_dict.accuracy}}</h4>
-                <h4>{{dict.data_dict.avg_accuracy}}</h4>
                 <hr>
             {% endfor %}
         </section>

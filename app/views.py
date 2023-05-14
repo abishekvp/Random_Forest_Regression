@@ -184,7 +184,6 @@ def regression(request):
             sums+=subacc[i]
         #Average accuracy for each subject.
         average=sums/len(subacc)
-        data_dict.update({"avg_accuracy":"Average Accuracy for a model: "+str(average)+"%"})
         return average
 
     for i in range(len(subject)):
@@ -194,9 +193,11 @@ def regression(request):
         x,y,df=sepdf(df)
         sub_fullname=fullform[subject[i]]
         Regress(x,y,sub_fullname,regression_name.get("reg_name"))
-        avgacc(subacc)
         total_dict.update({str(subject[i]):{"data_dict":data_dict, "table_data":table_data}})
-
+    
+    average=avgacc(subacc)
+    total_dict.update({"avg_accuracy":"Average Accuracy : "+str(average)+"%"})
+    
     return render(request, 'regression.html', {"total_dict":total_dict})
 
 

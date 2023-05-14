@@ -3,3 +3,9 @@
 *{
     font-family: 'Lexend', sans-serif;
 }
+#avg_accuracy{
+    position: fixed;
+    right: 5%;
+    top: 0;
+    background-color: white;
+}

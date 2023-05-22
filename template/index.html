@@ -12,37 +12,65 @@
     {% if messages %}
         {% for message in messages %}
             <p class="alert-message">{{ message }}</p>
+            <p class="chk"></p>
         {% endfor %}
     {% endif %}
 
     {% if user.is_authenticated %}
-        <a href="signout">Sign Out</a>
-        <h1>Welcome {{ request.user.username }}</h1>
-        <form action="" method="post">
-            {% csrf_token %}
-            <select name="regression_model" id="regression_model">
-                <option value="" selected disabled>Select Model</option>
-                <option value="Random Forest Regression">Random Forest Regression</option>
-                <option value="Linear Regression">Linear Regression</option>
-                <option value="XGB Regression">XGB Regression</option>
-                <option value="SVR Regression">SVR Regression</option>
-                <option value="DTR Regression">DTR Regression</option>
-                <option value="ADA Regression">ADA Regression</option>
-                <option value="Cat Booste Regression">Cat Booste Regression</option>
-                <option value="Light GBM Regression">Light GBM Regression</option>
-                <option value="Bayesian Regression">Bayesian Regression</option>
-                <option value="Lasso Regression">Lasso Regression</option>
-                <option value="Ridge Regression">Ridge Regression</option>
-                <option value="Elastic Net Regression">Elastic Net Regression</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
+        <nav>
+            <a href="signout">Sign Out</a>
+            <h1>Welcome {{ request.user.username }}</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <select name="regression_model" id="regression_model">
+                    <option value="" selected disabled>Select Model</option>
+                    <option value="Random Forest Regression">Random Forest Regression</option>
+                    <option value="Linear Regression">Linear Regression</option>
+                    <option value="XGB Regression">XGB Regression</option>
+                    <option value="SVR Regression">SVR Regression</option>
+                    <option value="DTR Regression">DTR Regression</option>
+                    <option value="ADA Regression">ADA Regression</option>
+                    <option value="Cat Booste Regression">Cat Booste Regression</option>
+                    <option value="Light GBM Regression">Light GBM Regression</option>
+                    <option value="Bayesian Regression">Bayesian Regression</option>
+                    <option value="Lasso Regression">Lasso Regression</option>
+                    <option value="Ridge Regression">Ridge Regression</option>
+                    <option value="Elastic Net Regression">Elastic Net Regression</option>
+                </select>
+                <input id="submit" type="submit" onclick="onsub()" value="Submit">
+            </form>
+        </nav>
+        <br>
+        <div class="material">
+            <iframe width="450" height="300" src="https://www.youtube.com/embed/videoseries?list=PLJ5C_6qdAvBHslIkD7JB7kBdgv1SeXy3P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="450" height="300" src="https://www.youtube.com/embed/wkOD6mbXc2M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="450" height="300" src="https://www.youtube.com/embed/videoseries?list=PLBMNl-szJPPc2ZAJeA1Va1qGDL8F7l9Dq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="450" height="300" src="https://www.youtube.com/embed/videoseries?list=PLBMNl-szJPPc2ZAJeA1Va1qGDL8F7l9Dq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="450" height="300" src="https://www.youtube.com/embed/o7LicE52RHo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="450" height="300" src="https://www.youtube.com/embed/videoseries?list=PLybG20ipbD47SaehYL8vnjE9FuZzQYY7z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
         {% block content %}
         {% endblock %}
     {% else %}
         {% block sign %}
         {% endblock %}
     {% endif %}
+    <script>
+        function onsub(e){
+            e.preventDefault();
+            valu = document.getElementById('regression_model').value
+            document.getElementById('chk').innerHTML = valu
+            $.ajax({
+                type:'POST',
+                url:'/on_chane',
+                data:{
+                    reg_mod:valu,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                }
+            });
+        };
+    </script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

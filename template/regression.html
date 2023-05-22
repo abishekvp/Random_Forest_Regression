@@ -2,16 +2,18 @@
 {% load static %}
 {% if user.is_authenticated %}
     {% block content %}
+        <h4 id="avg_accuracy">{{total_dict.avg_accuracy}}</h4>
         <section>
-            <h4 id="avg_accuracy">{{total_dict.avg_accuracy}}</h4>
             <h1>{{total_dict.DM.data_dict.title1}}</h1>
             {% for sub,dict in total_dict.items %}
                 <!-- <p>{{dict}}</p> -->
-                <h1>{{dict.data_dict.subject}}</h1>
-                <h3>{{dict.data_dict.title1}}</h3>
-                <h3>{{dict.data_dict.title2}}</h3>
-                <h3>{{dict.data_dict.title3}}</h3>
-                <h3>{{dict.data_dict.title4}}</h3>
+                <div class="titles">
+                    <h1>{{dict.data_dict.subject}}</h1>
+                    <h3>{{dict.data_dict.title1}}</h3>
+                    <h3>{{dict.data_dict.title2}}</h3>
+                    <h3>{{dict.data_dict.title3}}</h3>
+                </div>
+                <h4>{{dict.data_dict.title4}}</h4>
                 <h4>{{dict.data_dict.mae}}</h4>
                 <h4>{{dict.data_dict.mse}}</h4>
                 <h4>{{dict.data_dict.rmse}}</h4>
@@ -35,12 +37,12 @@
                     <tbody>
                         {% for i, data in dict.table_data.items %}
                         <tr>
-                            <td>{{i}}</td>
+                            <td id="name">{{i}}</td>
                             <td>{{data.iat_1}}</td>
                             <td>{{data.iat_2}}</td>
                             <td>{{data.model_exam}}</td>
                             <td>{{data.semmark}}</td>
-                            <td>{{data.prediction}}</td>
+                            <td id="pred">{{data.prediction}}</td>
                             <td>{{data.actual_grade}}</td>
                             <td>{{data.predgrade}}</td>
                         </tr>

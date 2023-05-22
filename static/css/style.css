@@ -3,9 +3,63 @@
 *{
     font-family: 'Lexend', sans-serif;
 }
+.alert-message{
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    top: 1%;
+    color: red;
+}
+nav{
+    z-index: 90;
+    display: flex;
+    position: fixed;
+    width: 80%;
+    top: 0;
+    padding: 2% 10% 0 10%;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #fff;
+}
 #avg_accuracy{
+    z-index: 99;
     position: fixed;
     right: 5%;
-    top: 0;
+    top: 8%;
     background-color: white;
+}
+.material{
+    width: 100%;
+    margin-top: 5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+section{
+    width: 90%;
+    margin: 5%;
+}
+section .titles{
+    text-align: center;
+}
+section table{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+section table tr td{
+    border: 1px solid;
+    border-collapse: collapse;
+}
+section table tbody tr #name{
+    text-align: left;
+    padding-left: 3%;
+}
+section table tbody tr #pred{
+    padding-left: 3%;
+    text-align: left;
 }
